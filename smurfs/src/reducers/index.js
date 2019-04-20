@@ -1,6 +1,7 @@
 /*
   Be sure to import in all of the action types from `../actions`
 */
+import { FETCHING_SMURFS, FETCH_SUCCESS, FETCH_FAILURE } from '../actions';
 
 const initialState = {
   smurfs: [],
@@ -21,6 +22,25 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch(action.type) {
+    case FETCHING_SMURFS:
+      return {
+        ...state,
+        fetchingSmurfs: true,
+        error: null
+      }
+    case FETCH_SUCCESS:
+      return {
+        ...state,
+        smurfs: action.payload,
+        fetchingSmurfs: false,
+        error: null
+      }
+    case FETCH_FAILURE:
+      return {
+        ...state,
+        fetchingSmurfs: false,
+        error: action.payload
+      }
     default:
       return state;
   }
