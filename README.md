@@ -23,8 +23,16 @@ In this challenge, you are to build the Smurfs village once again, only this tim
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+The store is the state held over the entire app by Redux. It's what's accessed by each component for the state info that it needs respectively. Actions are functions that run some logic that doesn't affect the state, then tells a reducer what action to take and possibly passes relevent info down to it as well. A reducer is a set of possible state changes to run based on the action type passed down. The store is the 'single source of truth' because it acts as the one location in which all mutable info is obtained. It's the end location to find a piece of info for anything the app needs.
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+Application state is what Redux provides, being state that is held at the highest level in the application, to be passed down to components as needed. Component state is state that is held on each component respectively, where the highest source of truth is the component, which either uses or passes down its state to its children. Application state is more useful in larger scale situations, with multiple moving parts and people working on different things, having a single source of truth at the top which everything pulls down from means no one gets conflicting data if done right. Component state is useful in smaller projects that wouldn't benefit as much from having a single source of state when compared to the expensive set up time and code maintenance.
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+Redux thunk allows for complex or asynchronous action work in Redux. It lets action-creators return dispatch based functions instead of just actions, allowing for delayed dispatches based on asynchronous events or conditional dispatching or other sorts of shenanigans.
 
 ## Project Set Up
 
