@@ -1,12 +1,13 @@
 /*
   Be sure to import in all of the action types from `../actions`
 */
-import { FETCHING_SMURFS, FETCH_SUCCESS, FETCH_FAILURE } from '../actions';
+import { FETCHING_SMURFS, FETCH_SUCCESS, FETCH_FAILURE, POSTING_SMURF, POST_SUCCESS, POST_FAILURE } from '../actions';
 
 const initialState = {
   smurfs: [],
+  newId: 1,
   fetchingSmurfs: false,
-  addingSmurf: false,
+  postingSmurf: false,
   updatingSmurf: false,
   deletingSmurf: false,
   error: null
@@ -39,6 +40,25 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetchingSmurfs: false,
+        error: action.payload
+      }
+    case POSTING_SMURF:
+      return {
+        ...state,
+        postingSmurf: true,
+        error: null
+      }
+    case POST_SUCCESS:
+      return {
+        ...state,
+        newId: state.newId++,
+        postingSmurf: false,
+        error: null
+      }
+    case POST_FAILURE:
+      return {
+        ...state,
+        postingSmurf: false,
         error: action.payload
       }
     default:
